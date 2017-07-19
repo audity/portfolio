@@ -30,15 +30,7 @@
     a:visited {
       color: green;
     }
-    .rotateimg270 {
-  -webkit-transform:rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  transform: rotate(270deg);
-  background-color: white;
-  padding: 3cm 2cm;
-}
+    
     p.hi {
       font-size: 200%;
       color: white;
@@ -65,9 +57,66 @@
        color: white;
        font-family: courier;
     }
+    /* Tiny reset thingy */
+body,html{margin:0;padding:0;}
+
+.wrapper {
+  /* The height needs to be set to a fixed value for the effect to work.
+   * 100vh is the full height of the viewport. */
+  height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+  perspective: 2px;
+}
+
+.section {
+  /* Needed for children to be absolutely positioned relative to the parent. */
+  position: relative;
+  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+  height: 100vh;
+  
+  /* For text formatting. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
+
+.parallax::after {
+  /* Display and position the pseudo-element */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  /* Move the pseudo-element back away from the camera,
+   * then scale it back up to fill the viewport.
+   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+  transform: translateZ(-1px) scale(1.5);
+  /* Force the background image to fill the whole element. */
+  background-size: 100%;
+  /* Keep the image from overlapping sibling elements. */ 
+  z-index: -1;
+}
+
+/* The styling for the static div. */
+.static {
+  
+  
+}
+
+/* Sets the actual background images to adorable kitties. This part is crucial. */
 
   </style>
 </head>
+<main class="wrapper">
+  <section class="section parallax bg1">
 
 <body style="background-color:#CCCCCC">
   <div>
@@ -78,9 +127,13 @@
       and always ready for <br>
       the next adventure. <br> <br>   </h1>
   </div>
+   </section>
+   <section class="section static">
 
 <div> <center> <img src="derp.jpg" alt="derp";"width:420px;height:360px;"
   class="rotateimg270"> </center> </div>
+</section>
+<section class="section parallax bg2">
 
   <center> <a href="/portfolio/works.html" class="works"> works.</a> </center>
 
@@ -88,9 +141,10 @@
     <br> <br> <br> <br><br> <br><br><br> <br><center> <h5 style = "background-color: #476c8a; padding:2cm"> Let's get in touch.<br>
       Start up a conversation with me on <br> <a href= "https://www.instagram.com/shiaudrey/instagram">instagram</a> or shoot me an
       <p title="audreybshi@gmail.com"> email. </p> </h5>
-  </p>. </h5>
+  </p> </h5>
        <br> <br> <br><br> <br>
      </center> </footer>
+   </section>
 
      </body>
      <br>
